@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  tomcat:
+#    image: 'bitnami/tomcat:7.0.99'
+#    image: 'bitnami/tomcat:7-ol-7'
+#    image: 'bitnami/tomcat:8.0'
+#    image: 'bitnami/tomcat:8.5'
+#    image: 'bitnami/tomcat:8.5-ol-7'
+    image: 'bitnami/tomcat:8.5.50'
+#    image: 'bitnami/tomcat:9.0'
+#    image: 'bitnami/tomcat:9.0-ol-7'
+#    image: 'bitnami/tomcat:9.0.30-ol-7-r35'
+#    image: 'bitnami/tomcat:latest'
+    environment:
+      TOMCAT_USERNAME: 'tomcat1'
+      TOMCAT_PASSWORD: 'tomcat'
+      TOMCAT_ALLOW_REMOTE_MANAGEMENT: 1
+#      JAVA_HOME: '/java_home'
+      JAVA_OPTS: '-DconfigDir=/var/webApp_config -Xms256M -Xmx1024M -Djava.awt.headless=true -XX:+UseG1GC -Dfile.encoding=UTF-8'
+      CATALINA_OPTS: '-Dorg.apache.el.parser.SKIP_IDENTIFIER_CHECK=true -agentlib:jdwp=transport=dt_socket,address=*:1043,server=y,suspend=n'
+      #JDBC_URL: 'jdbc:mysql://db:3306/lod?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true'
+      #JDBC_USER: 'teamone'
+      #JDBC_PASS: 'teampass'
+    ports:
+      - '8080:8080'
+#      - '8000:8000'
+      - '1043:1043'
+    volumes:
+      - 'tomcat_data:/bitnami'
+      - './lexus-web:/var/webApp_config/lexus-web'
+      - './log:/var/log'
+#      - './config.override.properties:/var/webApp_config/lexus-web/config.override.properties'
+#      - './lexus_site.properties:/var/webApp_config/lexus-web/lexus_site.properties'
+      #- './target/lod.war:/bitnami/tomcat/data/lod.war'
+      #- '/Users/edlee1/edlee/docker/tomcat/tomcat-users.xml:/opt/bitnami/tomcat/conf/tomcat-users.xml'
+#    command: bash -c "echo 'Going to webApp_config/lexus-web' && cd /var/webApp_config/lexus-web && pwd && ls -ltr"
+#    command: bash -c "cd /bitnami/tomcat/data && ls -ltr"
+#    command: bash -c "cd /bitnami/tomcat/data && rm lod.war && ls -ltr"
+#    command: bash -c "cd /bitnami/tomcat/data && rm -rf lod && ls -ltr"
+#    command: bash -c "/opt/bitnami/tomcat/bin/catalina.sh jpda run"
+volumes:
+  tomcat_data:
+    driver: local
