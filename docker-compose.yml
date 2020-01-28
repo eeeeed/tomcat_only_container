@@ -1,5 +1,5 @@
 version: '3'
-
+  
 services:
   tomcat:
 #    image: 'bitnami/tomcat:7.0.99'
@@ -30,10 +30,8 @@ services:
       - 'tomcat_data:/bitnami'
       - './lexus-web:/var/webApp_config/lexus-web'
       - './log:/var/log'
-#      - './config.override.properties:/var/webApp_config/lexus-web/config.override.properties'
-#      - './lexus_site.properties:/var/webApp_config/lexus-web/lexus_site.properties'
-      #- './target/lod.war:/bitnami/tomcat/data/lod.war'
-      #- '/Users/edlee1/edlee/docker/tomcat/tomcat-users.xml:/opt/bitnami/tomcat/conf/tomcat-users.xml'
+#      - './target/lod.war:/bitnami/tomcat/data/lod.war'
+#      - '/Users/edlee1/edlee/docker/tomcat/tomcat-users.xml:/opt/bitnami/tomcat/conf/tomcat-users.xml'
 #    command: bash -c "echo 'Going to webApp_config/lexus-web' && cd /var/webApp_config/lexus-web && pwd && ls -ltr"
 #    command: bash -c "cd /bitnami/tomcat/data && ls -ltr"
 #    command: bash -c "cd /bitnami/tomcat/data && rm lod.war && ls -ltr"
